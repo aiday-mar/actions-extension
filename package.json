@@ -25,7 +25,8 @@
       "actionsExtension": [
         {
           "id": "actionsExtension.sequencesView",
-          "name": "Sequences"
+          "name": "Sequences",
+          "icon": "$(list-tree)"
         }
       ]
     },
@@ -36,14 +37,9 @@
         "icon": "$(play)"
       },
       {
-        "command": "actionsExtension.addSequence",
-        "title": "Add Sequence",
-        "icon": "$(add)"
-      },
-      {
-        "command": "actionsExtension.removeSequence",
-        "title": "Remove Sequence",
-        "icon": "$(trash)"
+        "command": "actionsExtension.openSequencesSettings",
+        "title": "Open Sequences Settings",
+        "icon": "$(gear)"
       },
       {
         "command": "actionsExtension.refreshSequences",
@@ -54,7 +50,7 @@
     "menus": {
       "view/title": [
         {
-          "command": "actionsExtension.addSequence",
+          "command": "actionsExtension.openSequencesSettings",
           "when": "view == actionsExtension.sequencesView",
           "group": "navigation"
         },
@@ -69,11 +65,6 @@
           "command": "actionsExtension.runSequence",
           "when": "view == actionsExtension.sequencesView && viewItem == actionSequence",
           "group": "inline"
-        },
-        {
-          "command": "actionsExtension.removeSequence",
-          "when": "view == actionsExtension.sequencesView && viewItem == actionSequence",
-          "group": "inline"
         }
       ]
     },
@@ -82,7 +73,29 @@
       "properties": {
         "actionsExtension.sequences": {
           "type": "array",
-          "default": [],
+          "default": [
+            {
+              "name": "Format & Save",
+              "commands": [
+                "editor.action.formatDocument",
+                "workbench.action.files.save"
+              ]
+            },
+            {
+              "name": "Save All & Close Editor",
+              "commands": [
+                "workbench.action.files.saveAll",
+                "workbench.action.closeActiveEditor"
+              ]
+            },
+            {
+              "name": "Toggle Sidebar & Minimap",
+              "commands": [
+                "workbench.action.toggleSidebarVisibility",
+                "editor.action.toggleMinimap"
+              ]
+            }
+          ],
           "description": "List of command sequences to show in the Action Sequences panel.",
           "items": {
             "type": "object",
@@ -93,11 +106,16 @@
               },
               "commands": {
                 "type": "array",
-                "items": { "type": "string" },
-                "description": "Shell commands to run in order."
+                "items": {
+                  "type": "string"
+                },
+                "description": "VS Code commands to run in order (e.g. workbench.action.files.save)."
               }
             },
-            "required": ["name", "commands"]
+            "required": [
+              "name",
+              "commands"
+            ]
           }
         }
       }
