@@ -9,7 +9,7 @@ class SequenceItem extends vscode.TreeItem {
 	constructor(public readonly sequence: SequenceConfig) {
 		super(sequence.name, vscode.TreeItemCollapsibleState.None);
 		this.tooltip = sequence.commands.join('\n');
-		this.description = `${sequence.commands.length} command(s)`;
+		this.description = sequence.commands.length > 1 ? `${sequence.commands.length} commands` : '1 command';
 		this.contextValue = 'actionSequence';
 	}
 }
@@ -34,9 +34,24 @@ class SequenceTreeDataProvider implements vscode.TreeDataProvider<SequenceItem> 
 }
 
 async function runSequence(sequence: SequenceConfig): Promise<void> {
-	for (const cmd of sequence.commands) {
-		await vscode.commands.executeCommand(cmd);
-	}
+	const total = sequence.commands.length;
+
+	await vscode.window.withProgress(
+		{
+			location: vscode.ProgressLocation.Notification,
+			title: `Running sequence: ${sequence.name}`,
+			cancellable: false
+		},
+		async progress => {
+			for (const [index, cmd] of sequence.commands.entries()) {
+				progress.report({
+					message: `Running ${index + 1}/${total}: ${cmd}`,
+					increment: 100 / total
+				});
+				await vscode.commands.executeCommand(cmd);
+			}
+		}
+	);
 }
 
 export function activate(context: vscode.ExtensionContext) {

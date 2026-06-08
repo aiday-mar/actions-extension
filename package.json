@@ -75,24 +75,24 @@
           "type": "array",
           "default": [
             {
+              "name": "Generate Commit Message & Commat",
+              "commands": [
+                "github.copilot.git.generateCommitMessage",
+                "git.commitAll",
+                "git.push"
+              ]
+            },
+            {
+              "name": "Reload Window",
+              "commands": [
+                "workbench.action.reloadWindow"
+              ]
+            },
+            {
               "name": "Format & Save",
               "commands": [
                 "editor.action.formatDocument",
                 "workbench.action.files.save"
-              ]
-            },
-            {
-              "name": "Save All & Close Editor",
-              "commands": [
-                "workbench.action.files.saveAll",
-                "workbench.action.closeActiveEditor"
-              ]
-            },
-            {
-              "name": "Toggle Sidebar & Minimap",
-              "commands": [
-                "workbench.action.toggleSidebarVisibility",
-                "editor.action.toggleMinimap"
               ]
             }
           ],
