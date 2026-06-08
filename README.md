@@ -1,71 +1,58 @@
-# actions-extension README
+# Action Sequences
 
-This is the README for your extension "actions-extension". After writing up a brief description, we recommend including the following sections.
+Action Sequences adds a dedicated Activity Bar view for running multi-step VS Code command workflows with one click.
+
+Define named sequences in settings, then run them from the Sequences panel.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- Adds an Activity Bar container named Action Sequences.
+- Shows configured sequences in a tree view.
+- Runs commands in order with progress notifications.
+- Includes quick actions to open sequence settings and refresh the list.
 
-For example if there is an image subfolder under your extension project workspace:
+## Usage
 
-\!\[feature X\]\(images/feature-x.png\)
+1. Open Settings JSON.
+2. Configure `actionsExtension.sequences`.
+3. Open the Action Sequences view from the Activity Bar.
+4. Click a sequence to run it.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+Example configuration:
 
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+```json
+"actionsExtension.sequences": [
+	{
+		"name": "Format & Save",
+		"commands": [
+			"editor.action.formatDocument",
+			"workbench.action.files.save"
+		]
+	},
+	{
+		"name": "Reload Window",
+		"commands": [
+			"workbench.action.reloadWindow"
+		]
+	}
+]
+```
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+This extension contributes the following setting:
 
-For example:
+- `actionsExtension.sequences`: Array of sequence objects. Each sequence requires:
+	- `name`: Display name.
+	- `commands`: List of VS Code command IDs to execute in order.
 
-This extension contributes the following settings:
+## Notes
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
+- Commands are executed sequentially.
+- If a command fails, VS Code handles the error based on that command's behavior.
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+### 0.0.1
 
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+- Initial release of Action Sequences.

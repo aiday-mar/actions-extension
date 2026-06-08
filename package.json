@@ -1,8 +1,13 @@
 {
   "name": "actions-extension",
+  "publisher": "aiday-mar",
   "displayName": "actions-extension",
-  "description": "",
+  "description": "Run custom VS Code command sequences from a dedicated Activity Bar view.",
   "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aiday-mar/actions-extension.git"
+  },
   "engines": {
     "vscode": "^1.120.0"
   },
