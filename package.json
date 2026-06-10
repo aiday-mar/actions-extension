@@ -1,6 +1,6 @@
 {
   "name": "actions-extension",
-  "publisher": "aiday-mar",
+  "publisher": "aiday-marlen",
   "displayName": "actions-extension",
   "description": "Run custom VS Code command sequences from a dedicated Activity Bar view.",
   "version": "0.0.1",
