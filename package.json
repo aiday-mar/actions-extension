@@ -1,9 +1,10 @@
 {
   "name": "actions-extension",
   "publisher": "aiday-marlen",
-  "displayName": "actions-extension",
+  "displayName": "Actions Extension",
+  "icon": "assets/icon.png",
   "description": "Run custom VS Code command sequences from a dedicated Activity Bar view.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/aiday-mar/actions-extension.git"
@@ -80,7 +81,7 @@
           "type": "array",
           "default": [
             {
-              "name": "Generate Commit Message & Commat",
+              "name": "Generate Commit Message & Commit",
               "commands": [
                 "github.copilot.git.generateCommitMessage",
                 "git.commitAll",
